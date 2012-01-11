@@ -1,4 +1,6 @@
 TaskManager::Application.routes.draw do
+  resources :stories
+
   resources :users
 
   # The priority is based upon order of creation:
