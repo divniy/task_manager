@@ -1,25 +1,32 @@
-<%= form_for(@user) do |f| %>
-  <% if @user.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+<%= form_for @user do |f| %>
+    <% if @user.errors.any? %>
+        <div class="alert-message block-message error">
+          <p><strong><%= pluralize(@user.errors.count, "error") %></strong> prohibited this user from being saved:</p>
 
-      <ul>
-      <% @user.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+          <ul>
+            <% @user.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <div class="clearfix">
+      <%= f.label :name %>
+      <div class="input">
+        <%= f.text_field :name, :class => 'text_field' %>
+      </div>
     </div>
-  <% end %>
 
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.text_field :email %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+    <div class="clearfix">
+      <%= f.label :email %>
+      <div class="input">
+        <%= f.text_field :email, :class => 'text_field' %>
+      </div>
+    </div>
+
+    <div class="actions">
+      <%= submit_tag "Save", :class => 'btn primary' %> or
+      <%= link_to "Cancel", users_path %>
+    </div>
 <% end %>

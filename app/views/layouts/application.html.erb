@@ -13,9 +13,11 @@
         <h3><%= link_to "TaskManager", "/" %></h3>
         <ul class="nav">
           <li><%= link_to "Link1", "/path1"  %></li>
-          <li><%= link_to "Link2", "/path2"  %></li>
-          <li><%= link_to "Link3", "/path3"  %></li>
+          <li class="<%= controller.controller_path == 'users' ? 'active' : '' %>">
+            <a href="<%= users_path %>">Users</a>
+          </li>
         </ul>
+        
       </div>
     </div>
   </div>
@@ -30,8 +32,9 @@
           <h3>Sidebar</h3>
           <ul>
             <li><%= link_to "Link1", "/path1"  %></li>
-            <li><%= link_to "Link2", "/path2"  %></li>
-            <li><%= link_to "Link3", "/path3"  %></li>
+            <li class="<%= controller.controller_path == 'users' ? 'active' : '' %>">
+              <a href="<%= users_path %>">Users</a>
+            </li>
           </ul>
         </div>
       </div>
