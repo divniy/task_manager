@@ -32,10 +32,17 @@ gem 'jquery-rails'
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
 
+group :development do
+  gem 'test-unit'
+  #gem 'test-unit-rails'
+end
+
 group :test do
   # Pretty printed test output
   gem 'turn', '~> 0.8.3', :require => false
   gem 'test-unit'
   gem 'ruby-prof'
-# gem 'spork'
+  #Ruby mine bugs on it
+  #gem 'spork'
+  #gem 'spork-testunit'
 end
