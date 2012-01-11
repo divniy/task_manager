@@ -3,6 +3,7 @@ require 'test_helper'
 class UserTest < ActiveSupport::TestCase
   setup do
     @attr = { name: "Test User", email: "test@user.ru" }
+    @user = users(:one)
   end
 
   test "should saved new user with valid attributes" do
@@ -45,6 +46,17 @@ class UserTest < ActiveSupport::TestCase
       invalid_user = User.new(@attr.merge(:email => address))
       assert_false invalid_user.valid?
     end
+  end
+
+  # Testing associations
+  test "should have a stories attribute" do
+    assert_respond_to @user, :stories
+  end
+
+  test "should not destroy associated stories" do
+    ids = @user.stories.map {|story| story.id}
+    @user.destroy
+    assert_equal Story.find(ids).count, ids.count
   end
 
 end
