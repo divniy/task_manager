@@ -28,12 +28,11 @@ class StoryTest < ActiveSupport::TestCase
     assert_equal Story.all, [story2, story1]
   end
 
-  #State name tests
+  #State full_name tests
   test "should have right state_name associated with state" do
     story = stories(:one).find
     assert_equal Story::STATE_TABLE(story.state_name), story.state
   end
-  test "should have 'new' state_name "
 
 
 end

@@ -6,7 +6,7 @@
   <p><%= @story.content %></p>
 
   <label class="label">User:</label>
-  <p><%= unless @story.user.nil? then @story.user.name end %></p>
+  <p><%= unless @story.user.nil? then @story.user.full_name end %></p>
 
 <%= link_to "Edit", edit_story_path(@story), :class => 'btn primary' %>
 <%= link_to "Back", stories_path, :class => 'btn' %>

@@ -2,7 +2,7 @@ require 'test_helper'
 
 class UserTest < ActiveSupport::TestCase
   setup do
-    @attr = { name: "Test User", email: "test@user.ru" }
+    @attr = { full_name: "Test User", email: "test@user.ru" }
     @user = users(:one)
   end
 
@@ -12,8 +12,8 @@ class UserTest < ActiveSupport::TestCase
     assert valid_user.save
   end
 
-  test "should not save user without name" do
-    noname_user = User.new(@attr.merge(name: ""))
+  test "should not save user without full_name" do
+    noname_user = User.new(@attr.merge(full_name: ""))
     assert_false noname_user.save
   end
 
@@ -28,11 +28,11 @@ class UserTest < ActiveSupport::TestCase
     assert_false same_user.save
   end
 
-  test "should have name with valid length [5..50]" do
+  test "should have full_name with valid length [5..50]" do
     long = 'x'*51
     short = 'xxx'
-    assert_false User.new(@attr.merge(:name => long)).valid?
-    assert_false User.new(@attr.merge(:name => short)).valid?
+    assert_false User.new(@attr.merge(:full_name => long)).valid?
+    assert_false User.new(@attr.merge(:full_name => short)).valid?
   end
 
   test "should accept valid email addresses and reject invalid" do

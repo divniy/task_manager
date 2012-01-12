@@ -1,9 +1,9 @@
 class User < ActiveRecord::Base
-  attr_accessible :name, :email
+  attr_accessible :full_name, :email
 
   has_many  :stories, :dependent => :destroy
 
-  validates :name,    :presence => true,
+  validates :full_name,    :presence => true,
                       :length => { :minimum => 5, :maximum => 50 }
 
   validates :email,   :presence => true,

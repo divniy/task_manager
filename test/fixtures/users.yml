@@ -1,9 +1,9 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one:
-  name: Ivanov
+  full_name: Ivanov
   email: ivan@mail.ru
 
 two:
-  name: Petrov
+  full_name: Petrov
   email: petrov@rambler.ru

@@ -4,8 +4,8 @@
 
 FactoryGirl.define do
 
-  factory :user, :aliases => :story do
-    name      { Faker::Name.name }
+  factory :user do
+    full_name      { Faker::Name.name }
     email     { Faker::Internet.email }
   end
 
