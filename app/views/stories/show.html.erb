@@ -1,25 +1,12 @@
-<p id="notice"><%= notice %></p>
 
-<p>
-  <b>Title:</b>
-  <%= @story.title %>
-</p>
+  <label class="label">Title:</label>
+  <p><%= @story.title %></p>
 
-<p>
-  <b>Content:</b>
-  <%= @story.content %>
-</p>
+  <label class="label">Content:</label>
+  <p><%= @story.content %></p>
 
-<p>
-  <b>State:</b>
-  <%= @story.state %>
-</p>
+  <label class="label">User:</label>
+  <p><%= unless @story.user.nil? then @story.user.name end %></p>
 
-<p>
-  <b>User:</b>
-  <%= @story.user %>
-</p>
-
-
-<%= link_to 'Edit', edit_story_path(@story) %> |
-<%= link_to 'Back', stories_path %>
+<%= link_to "Edit", edit_story_path(@story), :class => 'btn primary' %>
+<%= link_to "Back", stories_path, :class => 'btn' %>

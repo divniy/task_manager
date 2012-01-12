@@ -1,29 +1,33 @@
 <h1>Listing stories</h1>
-
-<table>
+<table class="zebra-striped">
+  <thead>
   <tr>
+    <th>ID</th>
     <th>Title</th>
-    <th>Content</th>
-    <th>State</th>
     <th>User</th>
-    <th></th>
-    <th></th>
-    <th></th>
+    <th>State</th>
+    <th>Created at</th>
+    <th>Actions</th>
   </tr>
-
-<% @stories.each do |story| %>
-  <tr>
-    <td><%= story.title %></td>
-    <td><%= story.content %></td>
-    <td><%= story.state %></td>
-    <td><%= story.user %></td>
-    <td><%= link_to 'Show', story %></td>
-    <td><%= link_to 'Edit', edit_story_path(story) %></td>
-    <td><%= link_to 'Destroy', story, confirm: 'Are you sure?', method: :delete %></td>
-  </tr>
-<% end %>
+  </thead>
+  <tbody>
+  <% @stories.each do |story| -%>
+      <tr>
+        <td><%= story.id %></td>
+        <td><%= link_to story.title, story_path(story) %></td>
+        <td>
+          <%= unless story.user.nil? then story.user.name end %>
+        </td>
+        <td><%= story.state %></td>
+        <td><%= story.created_at %></td>
+        <td>
+          <%= link_to "Show", story_path(story) %>
+          <%= link_to "Edit", edit_story_path(story) %>
+          <%= link_to "Destroy", story_path(story), :method => :delete, :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}" %>
+        </td>
+      </tr>
+  <% end -%>
+  </tbody>
 </table>
 
-<br />
-
-<%= link_to 'New Story', new_story_path %>
+<%= link_to "New Task", new_story_path, :class => 'btn primary' %>
