@@ -12,7 +12,6 @@ class StoriesController < ApplicationController
   # GET /stories/new
   def new
     @story = Story.new
-    @users = User.all
   end
 
   # GET /stories/1/edit
