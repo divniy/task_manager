@@ -1,4 +1,6 @@
 TaskManager::Application.routes.draw do
+  resources :comments
+
   resources :stories
 
   resources :users
