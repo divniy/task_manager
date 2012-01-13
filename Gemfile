@@ -45,7 +45,7 @@ group :test do
   #gem 'spork-testunit'
 end
 
-group :development, :test do
+group :development, :test, :production do
 
   #gem 'test-unit-rails'
   gem 'factory_girl_rails'
