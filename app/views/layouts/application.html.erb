@@ -23,12 +23,16 @@
     </div>
   </div>
   <div class="container">
-    <div class="content">
+    <section class="content">
+
       <div class="row">
+
         <div class="span11">
           <%= yield %>
         </div>
+
         <div class="span1">&nbsp;</div>
+
         <div class="span4">
           <h3>Sidebar</h3>
           <ul>
@@ -39,9 +43,12 @@
               <a href="<%= users_path %>">Users</a>
             </li>
           </ul>
+          <%= yield :filters %>
         </div>
+
       </div>
-    </div>
+
+    </section>
   </div>
 </body>
 </html>

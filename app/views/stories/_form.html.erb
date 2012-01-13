@@ -20,7 +20,7 @@
     <div class="clearfix">
       <%= f.label :content %>
       <div class="input">
-        <%= f.text_area :content, :class => 'xxlarge' %>
+        <%= f.text_area :content, :class => 'span11' %>
       </div>
     </div>
 
@@ -28,6 +28,14 @@
       <%= f.label :user %>
       <div class="input">
         <%= f.collection_select(:user_id, User.all, :id, :full_name, :prompt => 'Select User') %>
+      </div>
+    </div>
+
+    <div class="clearfix">
+      <%= f.label :state %>
+      <div class="input">
+        <% #@state = @user.state %>
+        <%= f.collection_select(:state_id, State.all, :id, :name, :prompt => 'Select State') %>
       </div>
     </div>
 

@@ -1,18 +1,40 @@
 class Story < ActiveRecord::Base
-  attr_accessor :state_name
-  attr_accessible :title, :content, :user_id, :state, :state_name
+  #attr_reader :state_id
+  attr_accessible :title, :content, :user_id, :state_id
 
   belongs_to :user
+  has_many :comments, :dependent => :destroy
+
   default_scope :order => "stories.created_at DESC"
 
-  STATE_TABLE = { new: 1, accepted: 2, stared: 3, finished: 4, rejected: nil }
+  composed_of :state,
+      :mapping => [ %W(state id) ],
+      :allow_nil => true,
+      :constructor => Proc.new { |state| State.new(state) }
 
-  def state_name
-    @state_name = STATE_TABLE.key(state)
+  # Я немного вспотел, пока заставил работать предыдущую конструкцию,
+  # поэтому пришлось добавить следующие два метода для упрощения работы с селектами в формах
+
+  def state_id
+    self.state.id
   end
 
-  def state_name=(value)
-    @state, @state_name = STATE_TABLE[value], value
+  def state_id=(value)
+    self.state = State.new(value)
   end
 
+end
+
+class State
+  attr_reader :id, :name
+
+  STATE_TABLE = { 1 => :new, 2 => :accepted, 3 => :rejected, 4 => :started, 5 => :finished }.freeze
+
+  def initialize(id)
+    @id, @name = id, STATE_TABLE[id]
+  end
+
+  def State.all
+    STATE_TABLE.collect {|id,name| State.new(id) }
+  end
 end

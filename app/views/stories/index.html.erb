@@ -18,7 +18,7 @@
         <td>
           <%= unless story.user.nil? then story.user.full_name end %>
         </td>
-        <td><%= story.state %></td>
+        <td><%= story.state.name %></td>
         <td><%= story.created_at %></td>
         <td>
           <%= link_to "Show", story_path(story) %>
@@ -31,3 +31,7 @@
 </table>
 
 <%= link_to "New Task", new_story_path, :class => 'btn primary' %>
+
+<% content_for :filters do
+    render 'shared/filters'
+end %>

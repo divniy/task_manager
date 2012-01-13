@@ -5,14 +5,23 @@
 FactoryGirl.define do
 
   factory :user do
-    full_name      { Faker::Name.name }
-    email     { Faker::Internet.email }
+    full_name  { Faker::Name.name }
+    email      { Faker::Internet.email }
+    created_at { (rand(2).days + rand(24).hours + rand(60).minutes).ago }
   end
 
   factory :story do
     user
-    title     { Faker::Lorem.sentence(4) }
-    content   { Faker::Lorem.paragraphs(2) }
+    title      { Faker::Lorem.sentence(2) }
+    content    { Faker::Lorem.paragraphs(7).join() }
+    state      { State.all.sample }
+    created_at { (rand(2).days + rand(24).hours + rand(60).minutes).ago }
+  end
+  #State.all.sample.id
+  factory :comment do
+    story
+    content    { Faker::Lorem.paragraph(4) }
+    created_at { (rand(2).days + rand(24).hours + rand(60).minutes).ago }
   end
 
 end

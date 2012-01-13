@@ -1,12 +1,29 @@
+<div class="row section">
+  <h2><%= @story.title %></h2>
 
-  <label class="label">Title:</label>
-  <p><%= @story.title %></p>
-
-  <label class="label">Content:</label>
   <p><%= @story.content %></p>
 
-  <label class="label">User:</label>
-  <p><%= unless @story.user.nil? then @story.user.full_name end %></p>
+  <% unless @story.user.nil? %>
+  <p>
+    <strong>Referred to: </strong> <%= link_to @story.user.full_name, user_path(@story.user)  %>
+  </p>
+  <p>
+    <strong>State: </strong> <%= @story.state.name %>
+  </p>
+  <% end %>
 
-<%= link_to "Edit", edit_story_path(@story), :class => 'btn primary' %>
-<%= link_to "Back", stories_path, :class => 'btn' %>
+  <%= link_to "Edit", edit_story_path(@story), :class => 'btn primary' %>
+  <%= link_to "Back", stories_path, :class => 'btn' %>
+</div>
+
+<div class="row comments">
+  <h3>Comments:</h3>
+  <table>
+    <%= render @comments %>
+    <%= render 'comments/form' %>
+  </table>
+</div>
+
+
+
+

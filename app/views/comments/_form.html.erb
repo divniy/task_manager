@@ -1,25 +1,25 @@
-<%= form_for(@comment) do |f| %>
-  <% if @comment.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
+<tr>
+    <td colspan="2">
+    <%= form_for [@story, @comment], :html => { class: 'form-stacked' } do |f| %>
+        <% if @comment.errors.any? %>
+            <div id="alert-message block-message error">
+              <p><strong><%= pluralize(@comment.errors.count, "error") %></strong> prohibited this comment from being saved:</p>
+              <ul>
+                <% @comment.errors.full_messages.each do |msg| %>
+                    <li><%= msg %></li>
+                <% end %>
+              </ul>
+            </div>
+        <% end %>
 
-      <ul>
-      <% @comment.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+        <div class="clearfix">
+          <%= f.label :content, 'Add Comment' %>
+          <div class="input">
+            <%= f.text_area :content, :class => 'span10' %>
+          </div>
+        </div>
+        <%= f.submit 'Add Comment', :class => 'btn primary' %>
 
-  <div class="field">
-    <%= f.label :content %><br />
-    <%= f.text_area :content %>
-  </div>
-  <div class="field">
-    <%= f.label :story %><br />
-    <%= f.text_field :story %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+    <% end %>
+    </td>
+</tr>
