@@ -34,17 +34,19 @@ gem 'jquery-rails'
 # gem 'ruby-debug19', :require => 'ruby-debug'
 
 group :test do
+
   # Pretty printed test output
   gem 'turn', '~> 0.8.3', :require => false
   gem 'ruby-prof'
 
+  gem 'test-unit'
   #Ruby mine bugs on it
   #gem 'spork'
   #gem 'spork-testunit'
 end
 
 group :development, :test do
-  gem 'test-unit'
+
   #gem 'test-unit-rails'
   gem 'factory_girl_rails'
   gem 'faker'
