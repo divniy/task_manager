@@ -7,6 +7,8 @@ class StoryTest < ActiveSupport::TestCase
   end
 
   test "should create new story" do
+    story = Factory(:)
+
     story = @user.stories.create(@attr)
     assert story.save
   end

@@ -5,8 +5,8 @@ gem 'rails', '3.1.3'
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
 
-#gem 'sqlite3'
-gem 'pg'
+gem 'sqlite3'
+#gem 'pg'
 gem 'therubyracer'
 
 
@@ -40,14 +40,13 @@ group :test do
   gem 'ruby-prof'
 
   gem 'test-unit'
+  #gem 'test-unit-rails'
   #Ruby mine bugs on it
   #gem 'spork'
   #gem 'spork-testunit'
 end
 
 group :development, :test, :production do
-
-  #gem 'test-unit-rails'
   gem 'factory_girl_rails'
   gem 'faker'
 end
