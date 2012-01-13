@@ -11,6 +11,7 @@ class StoriesController < ApplicationController
     else
       @stories = Story.all
     end
+    @title = "List of Stories"
   end
 
   # GET /stories/1

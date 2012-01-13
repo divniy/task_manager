@@ -35,7 +35,7 @@
       <%= f.label :state %>
       <div class="input">
         <% #@state = @user.state %>
-        <%= f.collection_select(:state_id, State.all, :id, :name, :prompt => 'Select State') %>
+        <%= f.collection_select(:state_id, State.all, :id, :name) %>
       </div>
     </div>
 

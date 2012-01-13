@@ -2,8 +2,8 @@ require 'test_helper'
 
 class UserTest < ActiveSupport::TestCase
   setup do
-    @attr = { full_name: "Test User", email: "test@user.ru" }
-    @user = users(:one)
+    @attr = { full_name: "Test User", email: "dasd@desr.ru"}
+    @user = Factory.create(:user)
   end
 
   test "should saved new user with valid attributes" do
@@ -23,28 +23,25 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test "should not duplicate user" do
-    User.create!(@attr)
-    same_user = User.new(@attr)
-    assert_false same_user.save
+    Factory.create(:user, email: 'fixed@mail.com')
+    assert_false Factory.build(:user, email: 'fixed@mail.com').save
   end
 
   test "should have full_name with valid length [5..50]" do
     long = 'x'*51
     short = 'xxx'
-    assert_false User.new(@attr.merge(:full_name => long)).valid?
-    assert_false User.new(@attr.merge(:full_name => short)).valid?
+    assert_false Factory.build(:user, :full_name => long).valid?
+    assert_false Factory.build(:user, :full_name => short).valid?
   end
 
   test "should accept valid email addresses and reject invalid" do
     addr = %w[user@foo.com THE_USER@foo.bar.org first.last@foo.jp]
-    addr.each do |address|
-      valid_user = User.new(@attr.merge(:email => address))
-      assert valid_user.valid?
+    addr.each do |valid_address|
+      assert Factory.build(:user, email: valid_address).valid?
     end
     addr = %w[user@foo,com user_at_foo.org example.user@foo.]
-    addr.each do |address|
-      invalid_user = User.new(@attr.merge(:email => address))
-      assert_false invalid_user.valid?
+    addr.each do |invalid_address|
+      assert_false Factory.build(:user, email: invalid_address).valid?
     end
   end
 

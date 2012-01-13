@@ -1,9 +1,11 @@
+<h4>Filter by User</h4>
 <ul>
   <li><%= link_to 'All', stories_path %></li>
   <% @users.each do |user| %>
       <li><%= link_to user.full_name, stories_path(by: 'user',id: user.id) %></li>
   <% end %>
 </ul>
+<h4>Filter by State</h4>
 <ul>
   <li><%= link_to 'All', stories_path %></li>
   <% @states.each do |state| %>

@@ -2,7 +2,7 @@ require 'test_helper'
 
 class StoriesControllerTest < ActionController::TestCase
   setup do
-    @story = stories(:one)
+    @story = Factory.create(:story)
   end
 
   test "should get index" do
@@ -10,6 +10,25 @@ class StoriesControllerTest < ActionController::TestCase
     assert_response :success
     assert_not_nil assigns(:stories)
   end
+
+  test "should get right title" do
+    get :index
+    assert_select 'title', "List of Stories | TaskManager"
+    assert_select 'h1', "List of Stories"
+  end
+
+  test "should render filter by user" do
+    users = Factory.create_list(:users,5)
+    get :index
+    assert_not_nil assigns(:users)
+    User.each do |user|
+      assert_select 'a'
+    end
+
+  end
+
+
+
 
   test "should get new" do
     get :new

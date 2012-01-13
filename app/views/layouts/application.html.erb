@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>TaskManager</title>
+  <title><%= title %></title>
   <%= stylesheet_link_tag    "application" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
@@ -34,7 +34,7 @@
         <div class="span1">&nbsp;</div>
 
         <div class="span4">
-          <h3>Sidebar</h3>
+          <h3>Sections</h3>
           <ul>
             <li class="<%= controller.controller_path == 'stories' ? 'active' : '' %>">
               <a href="<%= stories_path %>">Stories</a>

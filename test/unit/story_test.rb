@@ -29,10 +29,21 @@ class StoryTest < ActiveSupport::TestCase
   end
 
   #State full_name tests
-  test "should have right state_name associated with state" do
-    story = stories(:one).find
-    assert_equal Story::STATE_TABLE(story.state_name), story.state
+  test "should have available states and new state on init" do
+    story = Story.new
+    assert State.all
+    assert_not_nil story.state
+    assert_equal story.state.name.to_s, "new"
   end
+  test "should have right state pare" do
+    story = Factory.create(:story)
+    story.state_id = State.all.sample.id
+    assert_equal State.new(story.state.id).name, story.state.name
+  end
+  #test "should have right state_name associated with state" do
+  #  story = stories(:one).find
+  #  assert_equal Story::STATE_TABLE(story.state_name), story.state
+  #end
 
 
 end

@@ -4,10 +4,19 @@
 
 FactoryGirl.define do
 
+  sequence :email do |n|
+    "person#{n}@example.com"
+  end
+
   factory :user do
+    full_name  { "Test User 1" }
+    email
+    created_at { (rand(2).days + rand(24).hours + rand(60).minutes).ago }
+  end
+
+  factory :application_user, :parent => :user do
     full_name  { Faker::Name.name }
     email      { Faker::Internet.email }
-    created_at { (rand(2).days + rand(24).hours + rand(60).minutes).ago }
   end
 
   factory :story do

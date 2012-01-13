@@ -9,9 +9,9 @@ class Story < ActiveRecord::Base
 
   composed_of :state,
       :mapping => [ %W(state id) ],
-      :allow_nil => true,
-      :constructor => Proc.new { |state| State.new(state) }
+      :constructor => Proc.new { |state| State.new(state || 1) }
 
+#:allow_nil => true,
   # Я немного вспотел, пока заставил работать предыдущую конструкцию,
   # поэтому пришлось добавить следующие два метода для упрощения работы с селектами в формах
 
@@ -30,11 +30,12 @@ class State
 
   STATE_TABLE = { 1 => :new, 2 => :accepted, 3 => :rejected, 4 => :started, 5 => :finished }.freeze
 
-  def initialize(id)
+  def initialize(id = 1)
     @id, @name = id, STATE_TABLE[id]
   end
 
-  def State.all
+  def self.all
     STATE_TABLE.collect {|id,name| State.new(id) }
   end
+
 end

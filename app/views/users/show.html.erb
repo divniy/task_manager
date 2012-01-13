@@ -1,9 +1,20 @@
+<form>
+<div class="clearfix">
+  <%= label_tag "Full name" %>
+  <div class="input">
+    <span class="uneditable-input"><%= @user.full_name %></span>
+  </div>
+</div>
 
-  <label class="label">Name:</label>
-  <p><%= @user.full_name %></p>
+<div class="clearfix">
+  <%= label_tag "E-mail" %>
+  <div class="input">
+    <span class="uneditable-input"><%= @user.email %></span>
+  </div>
+</div>
 
-  <label class="label">E-mail:</label>
-  <p><%= @user.email %></p>
-
-<%= link_to "Edit", edit_user_path(@user), :class => 'btn primary' %>
-<%= link_to "Back", users_path, :class => 'btn' %>
+<div class="actions">
+    <%= link_to "Edit", edit_user_path(@user), :class => 'btn primary' %>
+    <%= link_to "Back", users_path, :class => 'btn' %>
+</div>
+</form>
