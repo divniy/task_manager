@@ -47,6 +47,7 @@ group :test do
 end
 
 group :development, :test, :production do
+  # для заселения| на хероку|
   gem 'factory_girl_rails'
   gem 'faker'
 end

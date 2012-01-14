@@ -12,6 +12,7 @@ class Story < ActiveRecord::Base
 
   validates_presence_of :title, :content
 
+  #надо похорошему написать конвертер для композеда, пока так...
 
   def state_id
     self.state.id
@@ -21,11 +22,15 @@ class Story < ActiveRecord::Base
     self.state = State.new(value)
   end
 
+  #Интерфейс для стейта
+
   def self.states
     State.all
   end
 
 end
+
+# Малофукциональный прототип
 
 class State
   attr_reader :id, :name
