@@ -2,8 +2,8 @@ class StoriesController < ApplicationController
   # GET /stories
   def index
     @users = User.all
-    @states = State.all
-    @stories = Story.all
+    @states = Story.states
+
     if params[:by] == 'user' #and @users.collect{|u| u.id}.include?(params[:id].to_i)
       @stories = User.find(params[:id].to_i).stories
     elsif params[:by] == 'state' #and @stories.collect{|s| s.state.id}.include?(params[:id].to_i)

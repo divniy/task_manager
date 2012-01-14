@@ -4,14 +4,14 @@ class Story < ActiveRecord::Base
   belongs_to :user
   has_many :comments, :dependent => :destroy
 
-  default_scope :order => "stories.created_at DESC"
+  default_scope :order => "stories.created_at ASC"
 
   composed_of :state,
       :mapping => [ %W(state id) ],
       :constructor => Proc.new { |state| State.new(state || 1) }
 
-  # Я немного вспотел, пока заставил работать предыдущую конструкцию,
-  # поэтому пришлось добавить следующие два метода для упрощения работы с селектами в формах
+  validates_presence_of :title, :content
+
 
   def state_id
     self.state.id
@@ -19,6 +19,10 @@ class Story < ActiveRecord::Base
 
   def state_id=(value)
     self.state = State.new(value)
+  end
+
+  def self.states
+    State.all
   end
 
 end

@@ -1,15 +1,2 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
-one:
-  title: Test Task 1
-  content: MyText
-  state: 1
-  user: one
-  created_at: <%= 1.week.ago %>
-
-two:
-  title: Test Task 2
-  content: MyText
-  state: 1
-  user: one
-  created_at: <%= 1.day.ago %>

@@ -2,7 +2,6 @@
 <table class="zebra-striped">
   <thead>
   <tr>
-    <th>ID</th>
     <th>Title</th>
     <th>User</th>
     <th>State</th>
@@ -13,17 +12,18 @@
   <tbody>
   <% @stories.each do |story| -%>
       <tr>
-        <td><%= story.id %></td>
         <td><%= link_to story.title, story_path(story) %></td>
         <td>
           <%= unless story.user.nil? then story.user.full_name end %>
         </td>
+        <td><%= story.created_at.to_date %></td>
         <td><%= story.state.name %></td>
-        <td><%= story.created_at %></td>
         <td>
-          <%= link_to "Show", story_path(story) %>
-          <%= link_to "Edit", edit_story_path(story) %>
-          <%= link_to "Destroy", story_path(story), :method => :delete, :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}" %>
+          <%= link_to "Show", story_path(story) %><br />
+          <%= link_to "Edit", edit_story_path(story) %><br />
+          <%= link_to "Destroy", story_path(story), :method => :delete,
+                                                    :confirm => "#{t("web-app-theme.confirm",
+                                                    :default => "Are you sure?")}" %>
         </td>
       </tr>
   <% end -%>

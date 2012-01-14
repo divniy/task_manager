@@ -23,6 +23,7 @@ FactoryGirl.define do
     user
     title      { "Test Title" }
     content    { "Test content" }
+    state      { State.new(1) }
   end
 
   factory :application_story, :parent => :story do
