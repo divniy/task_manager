@@ -6,12 +6,13 @@ class CommentsController < ApplicationController
     if @comment.save
       redirect_to @story
     else
-      render 'story/show'
+      @comments = []
+      render 'stories/show'
     end
   end
 
   def destroy
-    # TODO
+    #TODO
   end
 
 end
